@@ -31,6 +31,7 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
+    raise
     @schedule.update(schedule_params)
     redirect_to schedules_path
   end
@@ -38,6 +39,6 @@ class SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.permit(:date, :place, :user_id, :partner)
+    params.require(:schedule).permit(:date, :place, :partner, :id)
   end
 end
